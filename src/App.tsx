@@ -19,7 +19,7 @@ function App() {
           <Switch>
             <Route exact path={'/'}>
             </Route>
-            <Route path={"/randomrecipe"}><RandomRecipePage /></Route>
+            <Route exact path={"/randomrecipe"}><RandomRecipePage /></Route>
             <Route path={"/searchrecipes"}><RecipeSearchPage /></Route>
           </Switch>
         </div>

@@ -38,7 +38,7 @@ export function RandomRecipePage() {
         src={recipe[0].image}
         alt="Recipe" />
         <br />
-        <a className="Recipe-link" target='_blank'
+        <a className="Recipe-link" rel="noreferrer" target='_blank'
           href={recipe[0].link}>See full recipe</a></div>
         : <h2>Click to get a random recipe!</h2>}
 
