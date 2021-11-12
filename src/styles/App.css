@@ -1,5 +1,5 @@
 body {
-    background-color: #99dacc;
+    background-color: #e2e2e2;
   }
   
   .App {
@@ -7,8 +7,30 @@ body {
     padding-bottom: 85px;
     font-family: 'Poppins', sans-serif;
   }
+
+  .Font {
+    font-family: 'Poppins', sans-serif;
+  }
   
 
   a.Recipe-link {
     color:darkslategrey;
   }
+
+  .container img {
+    width: 100%;
+ }
+
+ .MuiGrid-spacing-xs-1 {
+  width: calc(100% + 8px);
+  margin: -4px;
+  justify-content: center;
+}
+
+.MuiPaper-elevation1 {
+    box-shadow: 2px 4px 20px 0px rgb(0 0 0 / 50%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)!important;
+}
+
+.MuiPaper-root {
+  background-color: #ffffff!important;
+}
