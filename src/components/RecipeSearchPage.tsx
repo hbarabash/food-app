@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, TablePagination } from '@material-ui/core';
 import React, { useState } from 'react';
 import { RecipeSearchList } from '../models';
 import { getRecipeSearchResults } from '../services';
@@ -9,20 +9,53 @@ import SearchResultCard from './SearchResultCard';
 export function RecipeSearchPage() {
 
   const [searchResults, setSearchResults] = useState<RecipeSearchList>();
+  const [search, setSearch] = useState('');
+  let [page, setPage] = React.useState(0);
+  const [resultsCount, setResultsCount] = React.useState(0);
+  let [resultsPerPage, setResultsPerPage] = React.useState(10);
 
   const handleRecipeSearch = (input: string) => {
-    getRecipeSearchResults(input).then((data: RecipeSearchList) => {
+    getRecipeSearchResults(input, resultsPerPage, page*resultsPerPage).then((data: RecipeSearchList) => {
       setSearchResults(data);
+      setResultsCount(data.totalResults);
       console.log(searchResults);
     });
+    setSearch(input);
+    setSearchResults(searchResults);
   }
-
+  
+    const handleChangePage = (
+      event: React.MouseEvent<HTMLButtonElement> | null,
+      newPage: number,
+    ) => {
+      page = newPage;
+      setPage(page);
+      console.log(page);
+      getRecipeSearchResults(search, resultsPerPage, page*resultsPerPage).then((data: RecipeSearchList) => {
+        setSearchResults(data);
+        console.log(searchResults);
+      });
+      setSearchResults(searchResults);
+    };
+  
+    const handleChangeRowsPerPage = (
+      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      resultsPerPage = parseInt(event.target.value, 10);
+      setResultsPerPage(resultsPerPage);
+      setPage(0);
+      getRecipeSearchResults(search, resultsPerPage, page*resultsPerPage).then((data: RecipeSearchList) => {
+        setSearchResults(data);
+        console.log(searchResults);
+      });
+      setSearchResults(searchResults);
+    };
+  
   return (
     <>
     <SearchBar label="Search for recipe" onSubmit={handleRecipeSearch} />
       <Grid container>
       {searchResults?.results?.map((item) => {
-
         return (
           <Grid item xs={4} sm={4} md={4}>
             <SearchResultCard title={item.title} description={item.id} image={item.image} 
@@ -30,6 +63,15 @@ export function RecipeSearchPage() {
           </Grid>
         );})}
       </Grid>
+      {searchResults && <TablePagination
+
+        component="div"
+        count={resultsCount}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={resultsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />}
     </>
   );
 }
