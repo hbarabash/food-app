@@ -1,6 +1,5 @@
 body {
-    background-color: #99dacc;
-    font-family: Helvetica, sans-serif;
+    background-color: #e2e2e2;
   }
   
   .App {
@@ -8,9 +7,22 @@ body {
     padding-bottom: 85px;
     font-family: 'Poppins', sans-serif;
   }
+
+  .Font {
+    font-family: 'Poppins', sans-serif;
+  }
   
 
-  a.Recipe-link {
+  a.recipe-link {
     color:darkslategrey;
-    padding-top: 75%;
   }
+
+  .container img {
+    width: 100%;
+ }
+
+ .MuiGrid-spacing-xs-1 {
+  width: calc(100% + 8px);
+  margin: -4px;
+  justify-content: center;
+}
