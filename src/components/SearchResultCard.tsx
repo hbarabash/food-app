@@ -23,8 +23,6 @@ export interface SearchResultCardProperties {
   const useStyles = makeStyles(({palette}) => ({
     card: {
       height: '100%',
-      //display: 'flex',
-      //flexWrap: 'wrap',
       flexDirection: 'column',
       boxShadow: "2px 4px 20px 0px rgb(0 0 0 / 50%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)"
     },
