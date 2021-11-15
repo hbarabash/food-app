@@ -17,8 +17,7 @@ export const getRecipeSearchResults = async (input: string, number: number, offs
 
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set('Content-Type', 'application/json');
-    const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch?query=' + input + '&apiKey=7d630837b6d0442e9dd50eb059343d02'
-    + '&number=' + number + '&offset=' + offset;
+    const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${input}&apiKey=${apiKey}&number=${number}&offset=${offset}`;
     const request = await fetch(baseUrl, {
         method: 'GET',
         headers: requestHeaders

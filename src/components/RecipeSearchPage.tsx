@@ -11,9 +11,6 @@ const useStyles = makeStyles(() => ({
   container: {
     padding: 30
   },  
-  pagination: {
-    fontFamily: "Poppins, sans-serif"
-  }
 }));
 
 export function RecipeSearchPage() {
@@ -73,7 +70,7 @@ export function RecipeSearchPage() {
           </Grid>
         ))}
       </Grid>
-      {searchResults && <TablePagination className={classes.pagination}
+      {searchResults && <TablePagination
       labelRowsPerPage = "Results per page:"
         component="div"
         count={resultsCount}
