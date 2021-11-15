@@ -1,10 +1,9 @@
-
+const apiKey = "7d630837b6d0442e9dd50eb059343d02";
 export const getRandomRecipe = async () => {
 
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set('Content-Type', 'application/json');
-
-    const baseUrl = 'https://api.spoonacular.com/recipes/random?apiKey=7d630837b6d0442e9dd50eb059343d02&number=1'
+    const baseUrl = `https://api.spoonacular.com/recipes/random?&number=1&apiKey=${apiKey}`
     const request = await fetch(baseUrl, {
         method: 'GET',
         headers: requestHeaders
@@ -18,7 +17,6 @@ export const getRecipeSearchResults = async (input: string, number: number, offs
 
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set('Content-Type', 'application/json');
-
     const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch?query=' + input + '&apiKey=7d630837b6d0442e9dd50eb059343d02'
     + '&number=' + number + '&offset=' + offset;
     const request = await fetch(baseUrl, {
@@ -35,7 +33,7 @@ export const getRecipeById = async (id: number) => {
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set('Content-Type', 'application/json');
 
-    const baseUrl = 'https://api.spoonacular.com/recipes/' + id + '/information?apiKey=7d630837b6d0442e9dd50eb059343d02'
+    const baseUrl = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`
     const request = await fetch(baseUrl, {
         method: 'GET',
         headers: requestHeaders

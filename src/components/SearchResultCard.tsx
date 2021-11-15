@@ -20,20 +20,18 @@ export interface SearchResultCardProperties {
     actions?: React.ReactNode[];
   }
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles(({palette}) => ({
     card: {
       height: '100%',
-      display: 'flex',
-      flexWrap: 'wrap',
       flexDirection: 'column',
-      margin: '30px',
+      boxShadow: "2px 4px 20px 0px rgb(0 0 0 / 50%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)"
     },
     actions: {
       justifyContent: 'flex-end',
       marginTop: 'auto',
     },
     primaryColor: {
-      color: theme.palette.primary.main,
+      color: palette.primary.main,
     },
     image: {
         flexGrow: 1,
@@ -61,10 +59,8 @@ export interface SearchResultCardProperties {
   }));
 
   export default function SearchResultCard(props: SearchResultCardProperties) {
-
-    
     const classes = useStyles();
-      const [expanded, setExpanded] = React.useState(false);
+      const [expanded, setExpanded] = useState(false);
       const [summary, setSummary] = useState('');
 
       const getRecipeSummary = (id: number) => {
@@ -76,13 +72,9 @@ export interface SearchResultCardProperties {
 
       const handleExpandClick = () => {
         setExpanded(!expanded);
-        if (summary === '') {
-          getRecipeSummary(props.description);
-        }
-      };
-
+        if (summary === '') getRecipeSummary(props.description);
+      }
     return (
-        <div>
       <Card className={classes.card}>
         <CardContent >
           <Grid container direction="row" alignItems="center" spacing={1}
@@ -106,10 +98,9 @@ export interface SearchResultCardProperties {
         </ExpandMore></CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{ ReactHtmlParser ("<div>" + summary + "</div>") }</Typography>
+          <Typography paragraph>{ ReactHtmlParser (`<div>${summary}</div>`) }</Typography>
         </CardContent>
       </Collapse>
       </Card>
-      </div>
     );
   }
