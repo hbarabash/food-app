@@ -1,43 +1,43 @@
-import React, { useMemo, useState } from 'react';
-import createStyles from '@material-ui/core/styles/createStyles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import Search from '@material-ui/icons/Search';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import React, { useMemo, useState } from "react";
+import createStyles from "@material-ui/core/styles/createStyles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import IconButton from "@material-ui/core/IconButton";
+import InputBase from "@material-ui/core/InputBase";
+import Search from "@material-ui/icons/Search";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme =>
   createStyles({
     container: {
-      marginLeft: '40vw',
-      padding: 'auto',
+      marginLeft: "40vw",
+      padding: "auto"
     },
     search: {
-      width: '32ch',
+      width: "32ch",
       borderRadius: theme.shape.borderRadius,
       backgroundColor: fade(theme.palette.primary.main, 0.1),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.primary.main, 0.2),
+      "&:hover": {
+        backgroundColor: fade(theme.palette.primary.main, 0.2)
       },
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center"
     },
     searchIcon: {
       padding: theme.spacing(0, 1),
-      height: '100%',
+      height: "100%"
     },
     inputRoot: {
-      color: 'inherit',
-      width: '100%',
+      color: "inherit",
+      width: "100%"
     },
     inputInput: {
       padding: theme.spacing(1, 1, 1, 1),
-      transition: theme.transitions.create('width'),
-      width: '100%',
-    },
-  }),
+      transition: theme.transitions.create("width"),
+      width: "100%"
+    }
+  })
 );
 
 export default function SearchBar(props: {
@@ -46,7 +46,7 @@ export default function SearchBar(props: {
   onSubmit: (input: string) => void;
 }) {
   const classes = useStyles();
-  const [query, setQuery] = useState(props.initialValue ?? '');
+  const [query, setQuery] = useState(props.initialValue ?? "");
   const disableSubmit = useMemo(() => query.trim().length === 0, [query]);
 
   function submit() {
@@ -63,17 +63,21 @@ export default function SearchBar(props: {
           value={query}
           onChange={e => setQuery(e.target.value)}
           onKeyDown={e => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               submit();
             }
           }}
-          inputProps={{ 'aria-label': 'search' }}
+          inputProps={{ "aria-label": "search" }}
           classes={{
             root: classes.inputRoot,
-            input: classes.inputInput,
+            input: classes.inputInput
           }}
         />
-        <IconButton className={classes.searchIcon} onClick={submit} disabled={disableSubmit}>
+        <IconButton
+          className={classes.searchIcon}
+          onClick={submit}
+          disabled={disableSubmit}
+        >
           <Search />
         </IconButton>
       </div>
