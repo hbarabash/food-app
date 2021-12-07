@@ -1,4 +1,3 @@
-
 export interface Recipe {
   title: string;
   image: string;
@@ -16,6 +15,7 @@ export interface RecipeSearchResult {
 
 export interface RecipeSearchList {
   results: RecipeSearchResult[] | undefined;
+  totalResults: number;
 }
 
 export interface RecipeById {
