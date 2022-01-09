@@ -9,7 +9,7 @@ import SearchResultCard from "./SearchResultCard";
 
 const useStyles = makeStyles(() => ({
   container: {
-    padding: 30
+    padding: 100
   }
 }));
 

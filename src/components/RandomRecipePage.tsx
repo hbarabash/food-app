@@ -3,13 +3,23 @@ import { CustomButton } from "./";
 import { RecipeList } from "../models";
 import { getRandomRecipe } from "../services";
 import "../styles/App.css";
+import SearchResultCard from "./SearchResultCard";
+import { Box, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  container: {
+    marginBottom: 30
+  }
+}));
 
 export function RandomRecipePage() {
+  const classes = useStyles();
   const [recipe, setRecipe] = useState([
     {
       title: "",
       image: "",
-      link: ""
+      link: "",
+      id: 0
     }
   ]);
 
@@ -20,29 +30,27 @@ export function RandomRecipePage() {
         {
           title: data.recipes[0].title,
           image: data.recipes[0].image,
-          link: data.recipes[0].spoonacularSourceUrl
+          link: data.recipes[0].spoonacularSourceUrl,
+          id: data.recipes[0].id
         }
       ]);
     });
   };
   return (
     <div>
-      <CustomButton title="Random Recipe" onClick={handleRandomChange} />
+      <CustomButton
+        className={classes.container}
+        title="Random Recipe"
+        onClick={handleRandomChange}
+      />
       {recipe[0].title.length ? (
-        <div>
-          <h2>{recipe[0].title}</h2>
-          <img src={recipe[0].image} alt="Recipe" />
-          <p>
-            <a
-              className="recipe-link"
-              rel="noreferrer"
-              target="_blank"
-              href={recipe[0].link}
-            >
-              See full recipe
-            </a>
-          </p>
-        </div>
+        <Box sx={{ mx: "auto", width: 500 }}>
+          <SearchResultCard
+            title={recipe[0].title}
+            description={recipe[0].id}
+            image={recipe[0].image}
+          />{" "}
+        </Box>
       ) : (
         <h2>Click to get a random recipe!</h2>
       )}

@@ -11,11 +11,18 @@ import Collapse from "@mui/material/Collapse";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ReactHtmlParser from "react-html-parser";
+import { BookmarkButton } from "./custom-button/BookmarkButton";
+import {
+  deleteCookie,
+  getCookie,
+  isCookie,
+  setCookie
+} from "../utils/cookieUtils";
 
 export interface SearchResultCardProperties {
-  title: string | undefined;
+  title: string;
   description: number;
-  image: string | undefined;
+  image: string;
   actions?: React.ReactNode[];
 }
 
@@ -33,12 +40,22 @@ const useStyles = makeStyles(({ palette }) => ({
   primaryColor: {
     color: palette.primary.main
   },
+  box: {
+    display: "inline-block",
+    position: "relative"
+  },
   image: {
     flexGrow: 1,
     display: "flex",
     flexDirection: "column",
     width: "100%",
     height: "100%"
+  },
+  bookmark: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+    lineHeight: 0
   }
 }));
 
@@ -61,6 +78,7 @@ export default function SearchResultCard(props: SearchResultCardProperties) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [summary, setSummary] = useState("");
+  let [isBookmarked, setIsBookmarked] = useState(isCookie(props.title));
 
   const getRecipeSummary = (id: number) => {
     getRecipeById(id).then((data: RecipeById) => {
@@ -72,6 +90,17 @@ export default function SearchResultCard(props: SearchResultCardProperties) {
     setExpanded(!expanded);
     if (summary === "") getRecipeSummary(props.description);
   };
+
+  const handleBookmarkChange = () => {
+    if (isBookmarked) {
+      deleteCookie(props.title);
+      isBookmarked = false;
+    } else {
+      setCookie(props.title, props.description.toString(), props.image);
+      isBookmarked = true;
+    }
+    setIsBookmarked(isBookmarked);
+  };
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -82,8 +111,15 @@ export default function SearchResultCard(props: SearchResultCardProperties) {
           spacing={1}
           align-content="centre"
         >
-          <Grid item>
+          <Grid item className={classes.box}>
             <img className={classes.image} src={props.image} alt="Recipe" />
+            <BookmarkButton
+              className={classes.bookmark}
+              id={props.description}
+              image={props.image}
+              title={props.title}
+              onClick={handleBookmarkChange}
+            />
             <p>{props.title}</p>
           </Grid>
         </Grid>
