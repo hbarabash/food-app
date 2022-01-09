@@ -23,7 +23,6 @@ export function BookmarkPage() {
     <div>
       {recipes[0].length > 1 ? (
         <>
-          {" "}
           <h2>Bookmarked Recipes</h2>
           <Grid
             container
