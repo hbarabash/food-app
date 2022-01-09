@@ -2,14 +2,15 @@ export interface Recipe {
   title: string;
   image: string;
   spoonacularSourceUrl: string;
+  id: number;
 }
 export interface RecipeList {
   recipes: Recipe[];
 }
 
 export interface RecipeSearchResult {
-  title: string | undefined;
-  image: string | undefined;
+  title: string;
+  image: string;
   id: number;
 }
 

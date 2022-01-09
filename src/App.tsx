@@ -4,6 +4,7 @@ import "./styles/App.css";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { BookmarkPage } from "./components/BookmarkPage";
 
 const theme = createTheme({
   typography: {
@@ -31,7 +32,9 @@ function App() {
           </div>
           <div>
             <Switch>
-              <Route exact path={"/"}></Route>
+              <Route exact path={"/"}>
+                <BookmarkPage/>
+              </Route>
               <Route path={"/recipes/random"}>
                 <RandomRecipePage />
               </Route>
