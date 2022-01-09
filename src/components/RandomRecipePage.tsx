@@ -9,7 +9,6 @@ import { Box, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   container: {
     marginBottom: 30
-    
   }
 }));
 
@@ -20,7 +19,7 @@ export function RandomRecipePage() {
       title: "",
       image: "",
       link: "",
-      id: 0,
+      id: 0
     }
   ]);
 
@@ -39,13 +38,19 @@ export function RandomRecipePage() {
   };
   return (
     <div>
-      <CustomButton className={classes.container} title="Random Recipe" onClick={handleRandomChange} />
+      <CustomButton
+        className={classes.container}
+        title="Random Recipe"
+        onClick={handleRandomChange}
+      />
       {recipe[0].title.length ? (
-        <Box sx={{ mx: "auto", width: 500 }}> 
-        <SearchResultCard
-              title={recipe[0].title}
-              description={recipe[0].id}
-              image={recipe[0].image}/> </Box>
+        <Box sx={{ mx: "auto", width: 500 }}>
+          <SearchResultCard
+            title={recipe[0].title}
+            description={recipe[0].id}
+            image={recipe[0].image}
+          />{" "}
+        </Box>
       ) : (
         <h2>Click to get a random recipe!</h2>
       )}

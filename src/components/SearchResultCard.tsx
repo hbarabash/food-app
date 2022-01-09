@@ -3,7 +3,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import React, { useState } from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { Badge, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { getRecipeById } from "../services";
 import { RecipeById } from "../models";
 import { styled } from "@mui/material/styles";
@@ -12,7 +12,12 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ReactHtmlParser from "react-html-parser";
 import { BookmarkButton } from "./custom-button/BookmarkButton";
-import { deleteCookie, getCookie, isCookie, setCookie } from "../utils/cookieUtils";
+import {
+  deleteCookie,
+  getCookie,
+  isCookie,
+  setCookie
+} from "../utils/cookieUtils";
 
 export interface SearchResultCardProperties {
   title: string;
@@ -36,8 +41,8 @@ const useStyles = makeStyles(({ palette }) => ({
     color: palette.primary.main
   },
   box: {
-    display: 'inline-block',
-    position: 'relative',
+    display: "inline-block",
+    position: "relative"
   },
   image: {
     flexGrow: 1,
@@ -50,7 +55,7 @@ const useStyles = makeStyles(({ palette }) => ({
     position: "absolute",
     right: 0,
     top: 0,
-    lineHeight: 0,
+    lineHeight: 0
   }
 }));
 
@@ -90,13 +95,12 @@ export default function SearchResultCard(props: SearchResultCardProperties) {
     if (isBookmarked) {
       deleteCookie(props.title);
       isBookmarked = false;
-    }
-    else {
+    } else {
       setCookie(props.title, props.description.toString(), props.image);
       isBookmarked = true;
     }
     setIsBookmarked(isBookmarked);
-  }
+  };
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -109,8 +113,13 @@ export default function SearchResultCard(props: SearchResultCardProperties) {
         >
           <Grid item className={classes.box}>
             <img className={classes.image} src={props.image} alt="Recipe" />
-            <BookmarkButton className={classes.bookmark} 
-            id={props.description} image={props.image} title={props.title} onClick={handleBookmarkChange}/>
+            <BookmarkButton
+              className={classes.bookmark}
+              id={props.description}
+              image={props.image}
+              title={props.title}
+              onClick={handleBookmarkChange}
+            />
             <p>{props.title}</p>
           </Grid>
         </Grid>

@@ -33,7 +33,7 @@ function App() {
           <div>
             <Switch>
               <Route exact path={"/"}>
-                <BookmarkPage/>
+                <BookmarkPage />
               </Route>
               <Route path={"/recipes/random"}>
                 <RandomRecipePage />

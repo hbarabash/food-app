@@ -1,7 +1,7 @@
-import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import { Button } from "@material-ui/core";
-import { isCookie } from '../../utils/cookieUtils';
-import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import { isCookie } from "../../utils/cookieUtils";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 
 interface CustomButtonProps {
   title: string;
@@ -15,7 +15,7 @@ export const BookmarkButton = (props: CustomButtonProps) => {
   const { title, onClick } = props;
   return (
     <Button className={props.className} variant={"contained"} onClick={onClick}>
-      {isCookie(title) ? <BookmarkAddedIcon/> : <BookmarkAddIcon/>}
+      {isCookie(title) ? <BookmarkAddedIcon /> : <BookmarkAddIcon />}
     </Button>
   );
 };
